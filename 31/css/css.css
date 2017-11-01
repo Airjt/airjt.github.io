@@ -1,0 +1,22 @@
+body{
+	width: 1200px;
+	margin: 0 auto;
+}
+h2{
+	text-align: center;
+}
+#btn{
+	width: 100px;
+	height: 40px;
+	display: block;
+	margin: 0 auto;
+}
+div{
+	margin: 35px;
+}
+.game{
+	border: 1px solid #000;
+}
+input[type="text"]{
+	margin-left: 10px;
+}
