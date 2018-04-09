@@ -5,6 +5,7 @@
  import java.awt.*;
  import java.awt.image.*;
  import javax.imageio.ImageIO;
+ @WebServlet("/CheckServlet")
  public class CheckServlet extends HttpServlet
  {
  	private static int WIDTH = 60; //楠岃瘉鐮佸浘鐗囧搴�
