@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 1044px;
+            height: 600px;
+            margin: 50px auto;
+            background-color: red;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #imglist {
+            list-style: none;
+            position: absolute;
+            left: 10px;
+        }
+
+        li {
+            float: left;
+            margin: 0 10px;
+        }
+
+        #box {
+            top: 570px;
+            left: 397px;
+            position: absolute;
+        }
+
+        #box a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            opacity: 0.5;
+            float: left;
+            margin: 0 10px;
+            top: 580px;
+        }
+
+        #box a:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <ul id="imglist">
+            <li>
+                <img src="未标题-2.png" alt="">
+            </li>
+            <li>
+                <img src="未标题-3.png" alt="">
+            </li>
+            <li>
+                <img src="未标题-4.png" alt="">
+            </li>
+            <li>
+                <img src="未标题-5.png" alt="">
+            </li>
+            <li>
+                <img src="未标题-6.png" alt="">
+            </li>
+        </ul>
+        <div id="box">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <!-- <script src="tools.js"></script> -->
+    <script>
+        var imglist = document.getElementById("imglist");
+        var li = document.getElementsByTagName("li");
+        imglist.style.width = 1044 * li.length + "px";
+        var allA = document.getElementsByTagName("a");
+        var index = 0;
+        allA[index].style.backgroundColor = "black";
+        for (i = 0; i < allA.length; i++) {
+
+            allA[i].num = i;
+            allA[i].onclick = function () {
+
+                index = this.num;
+                // imglist.style.left = -(1044 * index - 10) + "px";
+                move(imglist, -1044 * index,10,function(){});
+                setcolor();
+
+            }
+        }
+        function setcolor() {
+            for (i = 0; i < allA.length; i++) {
+                allA[i].style.backgroundColor = "";
+            }
+            allA[index].style.backgroundColor = "black";
+        }
+        function move(obj, tager, speed) {
+            clearInterval(obj.timer)
+            var current = parseInt(getStyle(obj).left);
+            if (current > tager) {
+                speed = -speed;
+            }
+            obj.timer = setInterval(function () {
+                var oldValue = parseInt(getStyle(obj).left);
+                var newValue = oldValue + speed;
+                if ((speed < 0 && newValue < tager) || (speed > 0 && newValue > tager)) {
+                    newValue = tager;
+                }
+                obj.style.left = newValue + "px"
+
+                if (newValue === tager) {
+                    clearInterval(obj.timer);
+                }
+            }, 10)
+
+
+
+        }
+        function getStyle(obj) {
+            return getComputedStyle(obj, null);
+        };
+        // setInterval(function(){
+        //     var imgwidth = 1044;
+        //     imglist.style.left = imglist.offsetLeft-imgwidth+"px"; 
+        // },2000);
+    </script>
+</body>
+
+</html>
